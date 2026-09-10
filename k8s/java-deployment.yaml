@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: mecaniqa-java
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: mecaniqa-java
+
+  template:
+    metadata:
+      labels:
+        app: mecaniqa-java
+
+    spec:
+      containers:
+        - name: java
+          image: mecaniqa-belo-horizonte-java:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
