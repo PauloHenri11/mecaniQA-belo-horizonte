@@ -1,0 +1,18 @@
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Ambientes Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Executaveis locais
+/kubectl
+/minikube-linux-amd64
+
+# Credenciais locais
+.env
+.env.*

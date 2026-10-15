@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: mecaniqa-redis
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: mecaniqa-redis
+
+  template:
+    metadata:
+      labels:
+        app: mecaniqa-redis
+
+    spec:
+      containers:
+        - name: redis
+          image: mecaniqa-belo-horizonte-redis:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 6379

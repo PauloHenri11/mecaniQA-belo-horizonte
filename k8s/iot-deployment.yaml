@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: mecaniqa-iot
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: mecaniqa-iot
+
+  template:
+    metadata:
+      labels:
+        app: mecaniqa-iot
+
+    spec:
+      containers:
+        - name: iot
+          image: mecaniqa-iot:1.0
+          imagePullPolicy: Never
+
+          ports:
+            - containerPort: 8000

@@ -1,0 +1,39 @@
+services:
+
+  java:
+    build: ./java
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - redis
+    networks:
+      - mecaniqa-network
+
+  db:
+    build: ./mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mecaniqa
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - mecaniqa-network
+
+  redis:
+    build: ./redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - mecaniqa-network
+
+volumes:
+  mysql-data:
+  redis-data:
+
+networks:
+  mecaniqa-network:

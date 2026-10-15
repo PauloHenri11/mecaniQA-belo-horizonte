@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: mecaniqa-iot
+
+spec:
+  type: ClusterIP
+
+  selector:
+    app: mecaniqa-iot
+
+  ports:
+    - name: metrics
+      port: 8000
+      targetPort: 8000
+      protocol: TCP
