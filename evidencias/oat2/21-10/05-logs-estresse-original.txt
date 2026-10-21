@@ -1,0 +1,28 @@
+2026-10-21T22:30:11.744244997Z INICIANDO TESTE DE ESTRESSE MECANIQA
+2026-10-21T22:30:11.744340874Z Trabalhadores: 16
+2026-10-21T22:30:11.744347812Z Duracao: 240s
+2026-10-21T22:30:21.907148307Z Requisicoes concluidas: 532 | Falhas HTTP: 0
+2026-10-21T22:30:33.119881778Z Requisicoes concluidas: 1054 | Falhas HTTP: 0
+2026-10-21T22:30:43.119981596Z Requisicoes concluidas: 1583 | Falhas HTTP: 0
+2026-10-21T22:30:53.120188241Z Requisicoes concluidas: 2108 | Falhas HTTP: 0
+2026-10-21T22:31:04.387865697Z Requisicoes concluidas: 2626 | Falhas HTTP: 0
+2026-10-21T22:31:14.388231161Z Requisicoes concluidas: 4101 | Falhas HTTP: 14
+2026-10-21T22:31:24.388353647Z Requisicoes concluidas: 5866 | Falhas HTTP: 14
+2026-10-21T22:31:34.388471929Z Requisicoes concluidas: 7622 | Falhas HTTP: 14
+2026-10-21T22:31:45.702403432Z Requisicoes concluidas: 9433 | Falhas HTTP: 14
+2026-10-21T22:31:55.702573103Z Requisicoes concluidas: 11236 | Falhas HTTP: 14
+2026-10-21T22:32:05.702951486Z Requisicoes concluidas: 13067 | Falhas HTTP: 14
+2026-10-21T22:32:16.927507370Z Requisicoes concluidas: 14833 | Falhas HTTP: 14
+2026-10-21T22:32:26.927596374Z Requisicoes concluidas: 16613 | Falhas HTTP: 14
+2026-10-21T22:32:36.927760565Z Requisicoes concluidas: 18743 | Falhas HTTP: 14
+2026-10-21T22:32:48.327744917Z Requisicoes concluidas: 20868 | Falhas HTTP: 14
+2026-10-21T22:32:58.327870931Z Requisicoes concluidas: 22904 | Falhas HTTP: 14
+2026-10-21T22:33:08.328073732Z Requisicoes concluidas: 24932 | Falhas HTTP: 14
+2026-10-21T22:33:19.709484278Z Requisicoes concluidas: 26903 | Falhas HTTP: 14
+2026-10-21T22:33:29.709574769Z Requisicoes concluidas: 28978 | Falhas HTTP: 14
+2026-10-21T22:33:39.709724312Z Requisicoes concluidas: 31008 | Falhas HTTP: 14
+2026-10-21T22:33:51.105719702Z Requisicoes concluidas: 33136 | Falhas HTTP: 14
+2026-10-21T22:34:01.105825938Z Requisicoes concluidas: 35216 | Falhas HTTP: 14
+2026-10-21T22:34:11.106193450Z Requisicoes concluidas: 37282 | Falhas HTTP: 14
+2026-10-21T22:34:21.106221306Z Requisicoes concluidas: 39402 | Falhas HTTP: 14
+2026-10-21T22:34:21.579302908Z TESTE FINALIZADO {'sucessos': 39406, 'falhas_http': 14}

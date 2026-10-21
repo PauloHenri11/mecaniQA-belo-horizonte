@@ -1,0 +1,67 @@
+import json
+import os
+import random
+import threading
+import time
+import urllib.request
+from concurrent.futures import ThreadPoolExecutor
+
+URL = os.getenv(
+    "IOT_URL",
+    "http://mecaniqa-iot:8001/leitura"
+)
+
+DURACAO = int(os.getenv("DURATION_SECONDS", "240"))
+TRABALHADORES = int(os.getenv("WORKERS", "16"))
+
+fim = time.monotonic() + DURACAO
+contador = {"sucessos": 0, "falhas_http": 0}
+lock = threading.Lock()
+
+
+def enviar_leituras():
+    while time.monotonic() < fim:
+        dados = {
+            "temperatura": round(random.uniform(65, 115), 1),
+            "falha_eletrica": random.random() < 0.15
+        }
+
+        requisicao = urllib.request.Request(
+            URL,
+            data=json.dumps(dados).encode(),
+            headers={"Content-Type": "application/json"},
+            method="POST"
+        )
+
+        try:
+            with urllib.request.urlopen(requisicao, timeout=10):
+                with lock:
+                    contador["sucessos"] += 1
+        except Exception:
+            with lock:
+                contador["falhas_http"] += 1
+
+
+print("INICIANDO TESTE DE ESTRESSE MECANIQA", flush=True)
+print(f"Trabalhadores: {TRABALHADORES}", flush=True)
+print(f"Duracao: {DURACAO}s", flush=True)
+
+with ThreadPoolExecutor(max_workers=TRABALHADORES) as executor:
+    tarefas = [
+        executor.submit(enviar_leituras)
+        for _ in range(TRABALHADORES)
+    ]
+
+    while time.monotonic() < fim:
+        time.sleep(10)
+        with lock:
+            print(
+                f"Requisicoes concluidas: {contador['sucessos']} | "
+                f"Falhas HTTP: {contador['falhas_http']}",
+                flush=True
+            )
+
+    for tarefa in tarefas:
+        tarefa.result()
+
+print("TESTE FINALIZADO", contador, flush=True)

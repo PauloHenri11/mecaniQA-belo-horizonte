@@ -1,0 +1,153 @@
+MECANIQA - TESTE DE ESTRESSE E HPA
+2026-10-21T19:35:20-03:00
+===== HPA =====
+NAME               REFERENCE                 TARGETS                          MINPODS   MAXPODS   REPLICAS   AGE
+mecaniqa-iot-hpa   Deployment/mecaniqa-iot   cpu: 587%/60%, memory: 44%/70%   1         4         4          19m
+Name:                                                     mecaniqa-iot-hpa
+Namespace:                                                default
+Labels:                                                   <none>
+Annotations:                                              <none>
+CreationTimestamp:                                        Wed, 21 Oct 2026 19:15:45 -0300
+Reference:                                                Deployment/mecaniqa-iot
+Metrics:                                                  ( current / target )
+  resource cpu on pods  (as a percentage of request):     587% (146m) / 60%
+  resource memory on pods  (as a percentage of request):  44% (14633Ki) / 70%
+Min replicas:                                             1
+Max replicas:                                             4
+Deployment pods:                                          4 current / 4 desired
+Conditions:
+  Type            Status  Reason               Message
+  ----            ------  ------               -------
+  AbleToScale     True    ScaleDownStabilized  recent recommendations were higher than current one, applying the highest recent recommendation
+  ScalingActive   True    ValidMetricFound     the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  True    TooManyReplicas      the desired replica count is more than the maximum replica count
+  ScaledToZero    False   NotScaledToZero      the HPA controller did not scale the workload to zero
+Events:
+  Type     Reason                        Age                    From                       Message
+  ----     ------                        ----                   ----                       -------
+  Warning  FailedGetResourceMetric       7m41s (x5 over 19m)    horizontal-pod-autoscaler  failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+  Warning  FailedGetResourceMetric       7m41s (x2 over 7m56s)  horizontal-pod-autoscaler  failed to get memory utilization: did not receive metrics for targeted pods (pods might be unready)
+  Warning  FailedComputeMetricsReplicas  7m41s (x2 over 7m56s)  horizontal-pod-autoscaler  invalid metrics (2 invalid out of 2), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+  Normal   SuccessfulRescale             4m17s                  horizontal-pod-autoscaler  New size: 4; reason: cpu resource utilization (percentage of request) above target
+===== PODS =====
+NAME                            READY   STATUS    RESTARTS   AGE     IP            NODE       NOMINATED NODE   READINESS GATES
+mecaniqa-iot-7f58456686-f5l5n   1/1     Running   0          4m17s   10.244.0.14   minikube   <none>           <none>
+mecaniqa-iot-7f58456686-f7nb2   1/1     Running   0          7m58s   10.244.0.11   minikube   <none>           <none>
+mecaniqa-iot-7f58456686-x2k5d   1/1     Running   0          4m17s   10.244.0.15   minikube   <none>           <none>
+mecaniqa-iot-7f58456686-z7rxt   1/1     Running   0          4m17s   10.244.0.13   minikube   <none>           <none>
+===== CONSUMO =====
+NAME                            CPU(cores)   MEMORY(bytes)   
+mecaniqa-iot-7f58456686-f5l5n   155m         14Mi            
+mecaniqa-iot-7f58456686-f7nb2   114m         14Mi            
+mecaniqa-iot-7f58456686-x2k5d   148m         14Mi            
+mecaniqa-iot-7f58456686-z7rxt   170m         14Mi            
+===== JOB =====
+NAME                  STATUS     COMPLETIONS   DURATION   AGE
+mecaniqa-iot-stress   Complete   1/1           4m15s      5m10s
+===== LOGS DO ESTRESSE =====
+2026-10-21T22:30:11.744244997Z INICIANDO TESTE DE ESTRESSE MECANIQA
+2026-10-21T22:30:11.744340874Z Trabalhadores: 16
+2026-10-21T22:30:11.744347812Z Duracao: 240s
+2026-10-21T22:30:21.907148307Z Requisicoes concluidas: 532 | Falhas HTTP: 0
+2026-10-21T22:30:33.119881778Z Requisicoes concluidas: 1054 | Falhas HTTP: 0
+2026-10-21T22:30:43.119981596Z Requisicoes concluidas: 1583 | Falhas HTTP: 0
+2026-10-21T22:30:53.120188241Z Requisicoes concluidas: 2108 | Falhas HTTP: 0
+2026-10-21T22:31:04.387865697Z Requisicoes concluidas: 2626 | Falhas HTTP: 0
+2026-10-21T22:31:14.388231161Z Requisicoes concluidas: 4101 | Falhas HTTP: 14
+2026-10-21T22:31:24.388353647Z Requisicoes concluidas: 5866 | Falhas HTTP: 14
+2026-10-21T22:31:34.388471929Z Requisicoes concluidas: 7622 | Falhas HTTP: 14
+2026-10-21T22:31:45.702403432Z Requisicoes concluidas: 9433 | Falhas HTTP: 14
+2026-10-21T22:31:55.702573103Z Requisicoes concluidas: 11236 | Falhas HTTP: 14
+2026-10-21T22:32:05.702951486Z Requisicoes concluidas: 13067 | Falhas HTTP: 14
+2026-10-21T22:32:16.927507370Z Requisicoes concluidas: 14833 | Falhas HTTP: 14
+2026-10-21T22:32:26.927596374Z Requisicoes concluidas: 16613 | Falhas HTTP: 14
+2026-10-21T22:32:36.927760565Z Requisicoes concluidas: 18743 | Falhas HTTP: 14
+2026-10-21T22:32:48.327744917Z Requisicoes concluidas: 20868 | Falhas HTTP: 14
+2026-10-21T22:32:58.327870931Z Requisicoes concluidas: 22904 | Falhas HTTP: 14
+2026-10-21T22:33:08.328073732Z Requisicoes concluidas: 24932 | Falhas HTTP: 14
+2026-10-21T22:33:19.709484278Z Requisicoes concluidas: 26903 | Falhas HTTP: 14
+2026-10-21T22:33:29.709574769Z Requisicoes concluidas: 28978 | Falhas HTTP: 14
+2026-10-21T22:33:39.709724312Z Requisicoes concluidas: 31008 | Falhas HTTP: 14
+2026-10-21T22:33:51.105719702Z Requisicoes concluidas: 33136 | Falhas HTTP: 14
+2026-10-21T22:34:01.105825938Z Requisicoes concluidas: 35216 | Falhas HTTP: 14
+2026-10-21T22:34:11.106193450Z Requisicoes concluidas: 37282 | Falhas HTTP: 14
+2026-10-21T22:34:21.106221306Z Requisicoes concluidas: 39402 | Falhas HTTP: 14
+2026-10-21T22:34:21.579302908Z TESTE FINALIZADO {'sucessos': 39406, 'falhas_http': 14}
+===== EVENTOS DE ESCALONAMENTO =====
+LAST SEEN   TYPE      REASON                         OBJECT                                     MESSAGE
+31m         Normal    Starting                       node/minikube                              
+31m         Normal    Starting                       node/minikube                              Starting kubelet.
+31m         Normal    NodeHasSufficientMemory        node/minikube                              Node minikube status is now: NodeHasSufficientMemory
+31m         Normal    NodeHasNoDiskPressure          node/minikube                              Node minikube status is now: NodeHasNoDiskPressure
+31m         Normal    NodeHasSufficientPID           node/minikube                              Node minikube status is now: NodeHasSufficientPID
+31m         Normal    NodeAllocatableEnforced        node/minikube                              Updated Node Allocatable limit across pods
+31m         Normal    SandboxChanged                 pod/prometheus-85c4fb6f56-lbftg            Pod sandbox changed, it will be killed and re-created.
+31m         Normal    SandboxChanged                 pod/mecaniqa-java-74ff75cb89-f6k45         Pod sandbox changed, it will be killed and re-created.
+31m         Normal    SandboxChanged                 pod/grafana-8648c788cf-72rcw               Pod sandbox changed, it will be killed and re-created.
+31m         Normal    SandboxChanged                 pod/mecaniqa-redis-588bcfb9bc-9cldt        Pod sandbox changed, it will be killed and re-created.
+31m         Normal    SandboxChanged                 pod/mecaniqa-iot-7656c885b5-nwf4w          Pod sandbox changed, it will be killed and re-created.
+31m         Warning   Rebooted                       node/minikube                              Node minikube has been rebooted, boot id: 9fb72c97-cead-45ad-96f6-e6ad16d89a25
+31m         Normal    Created                        pod/prometheus-85c4fb6f56-lbftg            Container created
+31m         Normal    Pulled                         pod/mecaniqa-mysql-57cb5c65fb-6xkpz        Container image "mecaniqa-belo-horizonte-db:latest" already present on machine and can be accessed by the pod
+31m         Normal    Pulled                         pod/grafana-8648c788cf-72rcw               Container image "grafana/grafana:11.5.2" already present on machine and can be accessed by the pod
+31m         Normal    Pulled                         pod/mecaniqa-java-74ff75cb89-f6k45         Container image "mecaniqa-belo-horizonte-java:latest" already present on machine and can be accessed by the pod
+31m         Normal    Created                        pod/mecaniqa-java-74ff75cb89-f6k45         Container created
+31m         Normal    Started                        pod/mecaniqa-java-74ff75cb89-f6k45         Container started
+31m         Normal    Created                        pod/grafana-8648c788cf-72rcw               Container created
+31m         Normal    SandboxChanged                 pod/mecaniqa-mysql-57cb5c65fb-6xkpz        Pod sandbox changed, it will be killed and re-created.
+31m         Normal    Started                        pod/prometheus-85c4fb6f56-lbftg            Container started
+31m         Normal    Started                        pod/grafana-8648c788cf-72rcw               Container started
+31m         Normal    Pulled                         pod/prometheus-85c4fb6f56-lbftg            Container image "prom/prometheus:v2.55.1" already present on machine and can be accessed by the pod
+31m         Normal    Started                        pod/mecaniqa-iot-7656c885b5-nwf4w          Container started
+31m         Normal    Created                        pod/mecaniqa-iot-7656c885b5-nwf4w          Container created
+31m         Normal    Pulled                         pod/mecaniqa-iot-7656c885b5-nwf4w          Container image "mecaniqa-iot:1.0" already present on machine and can be accessed by the pod
+31m         Normal    Pulled                         pod/mecaniqa-redis-588bcfb9bc-9cldt        Container image "mecaniqa-belo-horizonte-redis:latest" already present on machine and can be accessed by the pod
+31m         Normal    Started                        pod/mecaniqa-redis-588bcfb9bc-9cldt        Container started
+31m         Normal    Created                        pod/mecaniqa-redis-588bcfb9bc-9cldt        Container created
+31m         Normal    Created                        pod/mecaniqa-mysql-57cb5c65fb-6xkpz        Container created
+31m         Normal    Started                        pod/mecaniqa-mysql-57cb5c65fb-6xkpz        Container started
+31m         Normal    RegisteredNode                 node/minikube                              Node minikube event: Registered Node minikube in Controller
+20m         Normal    Killing                        pod/mecaniqa-iot-7656c885b5-nwf4w          Stopping container iot
+20m         Normal    SuccessfulDelete               replicaset/mecaniqa-iot-7656c885b5         Deleted pod: mecaniqa-iot-7656c885b5-nwf4w
+20m         Normal    ScalingReplicaSet              deployment/mecaniqa-iot                    Scaled down replica set mecaniqa-iot-7656c885b5 from 1 to 0
+20m         Normal    SuccessfulCreate               replicaset/mecaniqa-iot-db996f8ff          Created pod: mecaniqa-iot-db996f8ff-68rk8
+20m         Normal    ScalingReplicaSet              deployment/mecaniqa-iot                    Scaled up replica set mecaniqa-iot-db996f8ff from 0 to 1
+20m         Normal    Created                        pod/mecaniqa-iot-db996f8ff-68rk8           Container created
+20m         Normal    Pulled                         pod/mecaniqa-iot-db996f8ff-68rk8           Container image "mecaniqa-iot:1.0" already present on machine and can be accessed by the pod
+20m         Normal    Scheduled                      pod/mecaniqa-iot-db996f8ff-68rk8           Successfully assigned default/mecaniqa-iot-db996f8ff-68rk8 to minikube
+20m         Normal    Started                        pod/mecaniqa-iot-db996f8ff-68rk8           Container started
+7m58s       Normal    SuccessfulCreate               replicaset/mecaniqa-iot-7f58456686         Created pod: mecaniqa-iot-7f58456686-f7nb2
+7m58s       Normal    Started                        pod/mecaniqa-iot-7f58456686-f7nb2          Container started
+7m58s       Normal    Created                        pod/mecaniqa-iot-7f58456686-f7nb2          Container created
+7m58s       Normal    Pulled                         pod/mecaniqa-iot-7f58456686-f7nb2          Container image "mecaniqa-iot:2.0" already present on machine and can be accessed by the pod
+7m58s       Normal    Scheduled                      pod/mecaniqa-iot-7f58456686-f7nb2          Successfully assigned default/mecaniqa-iot-7f58456686-f7nb2 to minikube
+7m58s       Normal    ScalingReplicaSet              deployment/mecaniqa-iot                    Scaled up replica set mecaniqa-iot-7f58456686 from 0 to 1
+7m57s       Normal    ScalingReplicaSet              deployment/mecaniqa-iot                    Scaled down replica set mecaniqa-iot-db996f8ff from 1 to 0
+7m57s       Normal    SuccessfulDelete               replicaset/mecaniqa-iot-db996f8ff          Deleted pod: mecaniqa-iot-db996f8ff-68rk8
+7m57s       Normal    Killing                        pod/mecaniqa-iot-db996f8ff-68rk8           Stopping container iot
+7m41s       Warning   FailedGetResourceMetric        horizontalpodautoscaler/mecaniqa-iot-hpa   failed to get memory utilization: did not receive metrics for targeted pods (pods might be unready)
+7m41s       Warning   FailedComputeMetricsReplicas   horizontalpodautoscaler/mecaniqa-iot-hpa   invalid metrics (2 invalid out of 2), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+7m41s       Warning   FailedGetResourceMetric        horizontalpodautoscaler/mecaniqa-iot-hpa   failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+5m10s       Normal    SuccessfulCreate               job/mecaniqa-iot-stress                    Created pod: mecaniqa-iot-stress-fvsc8
+5m10s       Normal    Scheduled                      pod/mecaniqa-iot-stress-fvsc8              Successfully assigned default/mecaniqa-iot-stress-fvsc8 to minikube
+5m9s        Normal    Started                        pod/mecaniqa-iot-stress-fvsc8              Container started
+5m9s        Normal    Created                        pod/mecaniqa-iot-stress-fvsc8              Container created
+5m9s        Normal    Pulled                         pod/mecaniqa-iot-stress-fvsc8              Container image "mecaniqa-iot:2.0" already present on machine and can be accessed by the pod
+4m17s       Normal    SuccessfulCreate               replicaset/mecaniqa-iot-7f58456686         Created pod: mecaniqa-iot-7f58456686-z7rxt
+4m17s       Normal    ScalingReplicaSet              deployment/mecaniqa-iot                    Scaled up replica set mecaniqa-iot-7f58456686 from 1 to 4
+4m17s       Normal    SuccessfulRescale              horizontalpodautoscaler/mecaniqa-iot-hpa   New size: 4; reason: cpu resource utilization (percentage of request) above target
+4m17s       Normal    SuccessfulCreate               replicaset/mecaniqa-iot-7f58456686         Created pod: mecaniqa-iot-7f58456686-x2k5d
+4m17s       Normal    SuccessfulCreate               replicaset/mecaniqa-iot-7f58456686         Created pod: mecaniqa-iot-7f58456686-f5l5n
+4m16s       Normal    Scheduled                      pod/mecaniqa-iot-7f58456686-z7rxt          Successfully assigned default/mecaniqa-iot-7f58456686-z7rxt to minikube
+4m16s       Normal    Pulled                         pod/mecaniqa-iot-7f58456686-z7rxt          Container image "mecaniqa-iot:2.0" already present on machine and can be accessed by the pod
+4m16s       Normal    Scheduled                      pod/mecaniqa-iot-7f58456686-x2k5d          Successfully assigned default/mecaniqa-iot-7f58456686-x2k5d to minikube
+4m16s       Normal    Pulled                         pod/mecaniqa-iot-7f58456686-f5l5n          Container image "mecaniqa-iot:2.0" already present on machine and can be accessed by the pod
+4m16s       Normal    Scheduled                      pod/mecaniqa-iot-7f58456686-f5l5n          Successfully assigned default/mecaniqa-iot-7f58456686-f5l5n to minikube
+4m15s       Normal    Started                        pod/mecaniqa-iot-7f58456686-z7rxt          Container started
+4m15s       Normal    Created                        pod/mecaniqa-iot-7f58456686-z7rxt          Container created
+4m15s       Normal    Started                        pod/mecaniqa-iot-7f58456686-x2k5d          Container started
+4m15s       Normal    Created                        pod/mecaniqa-iot-7f58456686-x2k5d          Container created
+4m15s       Normal    Pulled                         pod/mecaniqa-iot-7f58456686-x2k5d          Container image "mecaniqa-iot:2.0" already present on machine and can be accessed by the pod
+4m15s       Normal    Started                        pod/mecaniqa-iot-7f58456686-f5l5n          Container started
+4m15s       Normal    Created                        pod/mecaniqa-iot-7f58456686-f5l5n          Container created
+55s         Normal    Completed                      job/mecaniqa-iot-stress                    Job completed

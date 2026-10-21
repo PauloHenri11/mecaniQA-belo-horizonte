@@ -1,0 +1,338 @@
+[
+  {
+    "id": 1,
+    "uid": "mqiotcpu",
+    "orgID": 1,
+    "folderUID": "mecaniqa-oat2",
+    "ruleGroup": "Monitoramento IoT",
+    "title": "OAT2 - CPU elevada",
+    "condition": "B",
+    "data": [
+      {
+        "refId": "A",
+        "queryType": "",
+        "relativeTimeRange": {
+          "from": 120,
+          "to": 0
+        },
+        "datasourceUid": "bg199a5u9diioe",
+        "model": {
+          "editorMode": "code",
+          "expr": "max(100 * rate(process_cpu_seconds_total{job=\"mecaniqa-iot\"}[2m]) / 0.025)",
+          "instant": true,
+          "intervalMs": 1000,
+          "maxDataPoints": 43200,
+          "range": false,
+          "refId": "A"
+        }
+      },
+      {
+        "refId": "B",
+        "queryType": "",
+        "relativeTimeRange": {
+          "from": 0,
+          "to": 0
+        },
+        "datasourceUid": "-100",
+        "model": {
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [
+                  70
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "A"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            }
+          ],
+          "datasource": {
+            "type": "__expr__",
+            "uid": "-100"
+          },
+          "intervalMs": 1000,
+          "maxDataPoints": 43200,
+          "refId": "B",
+          "type": "classic_conditions"
+        }
+      }
+    ],
+    "updated": "2026-10-21T22:49:00Z",
+    "noDataState": "NoData",
+    "execErrState": "Error",
+    "for": "1m",
+    "annotations": {
+      "summary": "OAT2 - CPU elevada"
+    },
+    "labels": {
+      "projeto": "mecaniqa"
+    },
+    "isPaused": false,
+    "notification_settings": null,
+    "record": null
+  },
+  {
+    "id": 2,
+    "uid": "mqiotmem",
+    "orgID": 1,
+    "folderUID": "mecaniqa-oat2",
+    "ruleGroup": "Monitoramento IoT",
+    "title": "OAT2 - Memoria elevada",
+    "condition": "B",
+    "data": [
+      {
+        "refId": "A",
+        "queryType": "",
+        "relativeTimeRange": {
+          "from": 120,
+          "to": 0
+        },
+        "datasourceUid": "bg199a5u9diioe",
+        "model": {
+          "editorMode": "code",
+          "expr": "max(100 * process_resident_memory_bytes{job=\"mecaniqa-iot\"} / 33554432)",
+          "instant": true,
+          "intervalMs": 1000,
+          "maxDataPoints": 43200,
+          "range": false,
+          "refId": "A"
+        }
+      },
+      {
+        "refId": "B",
+        "queryType": "",
+        "relativeTimeRange": {
+          "from": 0,
+          "to": 0
+        },
+        "datasourceUid": "-100",
+        "model": {
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [
+                  80
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "A"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            }
+          ],
+          "datasource": {
+            "type": "__expr__",
+            "uid": "-100"
+          },
+          "intervalMs": 1000,
+          "maxDataPoints": 43200,
+          "refId": "B",
+          "type": "classic_conditions"
+        }
+      }
+    ],
+    "updated": "2026-10-21T22:49:00Z",
+    "noDataState": "NoData",
+    "execErrState": "Error",
+    "for": "1m",
+    "annotations": {
+      "summary": "OAT2 - Memoria elevada"
+    },
+    "labels": {
+      "projeto": "mecaniqa"
+    },
+    "isPaused": false,
+    "notification_settings": null,
+    "record": null
+  },
+  {
+    "id": 3,
+    "uid": "mqioterr",
+    "orgID": 1,
+    "folderUID": "mecaniqa-oat2",
+    "ruleGroup": "Monitoramento IoT",
+    "title": "OAT2 - Erros nas leituras IoT",
+    "condition": "B",
+    "data": [
+      {
+        "refId": "A",
+        "queryType": "",
+        "relativeTimeRange": {
+          "from": 120,
+          "to": 0
+        },
+        "datasourceUid": "bg199a5u9diioe",
+        "model": {
+          "editorMode": "code",
+          "expr": "sum(rate(mecaniqa_leituras_erro_total{job=\"mecaniqa-iot\"}[2m]))",
+          "instant": true,
+          "intervalMs": 1000,
+          "maxDataPoints": 43200,
+          "range": false,
+          "refId": "A"
+        }
+      },
+      {
+        "refId": "B",
+        "queryType": "",
+        "relativeTimeRange": {
+          "from": 0,
+          "to": 0
+        },
+        "datasourceUid": "-100",
+        "model": {
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [
+                  10
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "A"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            }
+          ],
+          "datasource": {
+            "type": "__expr__",
+            "uid": "-100"
+          },
+          "intervalMs": 1000,
+          "maxDataPoints": 43200,
+          "refId": "B",
+          "type": "classic_conditions"
+        }
+      }
+    ],
+    "updated": "2026-10-21T22:49:00Z",
+    "noDataState": "NoData",
+    "execErrState": "Error",
+    "for": "1m",
+    "annotations": {
+      "summary": "OAT2 - Erros nas leituras IoT"
+    },
+    "labels": {
+      "projeto": "mecaniqa"
+    },
+    "isPaused": false,
+    "notification_settings": null,
+    "record": null
+  },
+  {
+    "id": 4,
+    "uid": "mqiotok",
+    "orgID": 1,
+    "folderUID": "mecaniqa-oat2",
+    "ruleGroup": "Monitoramento IoT",
+    "title": "OAT2 - Queda nas leituras de sucesso",
+    "condition": "B",
+    "data": [
+      {
+        "refId": "A",
+        "queryType": "",
+        "relativeTimeRange": {
+          "from": 120,
+          "to": 0
+        },
+        "datasourceUid": "bg199a5u9diioe",
+        "model": {
+          "editorMode": "code",
+          "expr": "sum(rate(mecaniqa_leituras_sucesso_total{job=\"mecaniqa-iot\"}[2m]))",
+          "instant": true,
+          "intervalMs": 1000,
+          "maxDataPoints": 43200,
+          "range": false,
+          "refId": "A"
+        }
+      },
+      {
+        "refId": "B",
+        "queryType": "",
+        "relativeTimeRange": {
+          "from": 0,
+          "to": 0
+        },
+        "datasourceUid": "-100",
+        "model": {
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [
+                  0.1
+                ],
+                "type": "lt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "A"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            }
+          ],
+          "datasource": {
+            "type": "__expr__",
+            "uid": "-100"
+          },
+          "intervalMs": 1000,
+          "maxDataPoints": 43200,
+          "refId": "B",
+          "type": "classic_conditions"
+        }
+      }
+    ],
+    "updated": "2026-10-21T22:49:00Z",
+    "noDataState": "Alerting",
+    "execErrState": "Error",
+    "for": "2m",
+    "annotations": {
+      "summary": "OAT2 - Queda nas leituras de sucesso"
+    },
+    "labels": {
+      "projeto": "mecaniqa"
+    },
+    "isPaused": false,
+    "notification_settings": null,
+    "record": null
+  }
+]

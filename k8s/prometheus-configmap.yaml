@@ -1,9 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
-
 metadata:
   name: prometheus-config
-
 data:
   prometheus.yml: |
     global:
@@ -11,6 +9,9 @@ data:
 
     scrape_configs:
       - job_name: "mecaniqa-iot"
-        static_configs:
-          - targets:
-              - "mecaniqa-iot:8000"
+        dns_sd_configs:
+          - names:
+              - "mecaniqa-iot-metrics.default.svc.cluster.local"
+            type: A
+            port: 8000
+            refresh_interval: 10s

@@ -8,6 +8,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY simulador.py .
 
-EXPOSE 8000
+EXPOSE 8000 8001
 
 CMD ["python", "-u", "simulador.py"]

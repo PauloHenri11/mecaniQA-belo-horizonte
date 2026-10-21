@@ -19,8 +19,16 @@ spec:
     spec:
       containers:
         - name: iot
-          image: mecaniqa-iot:1.0
+          image: mecaniqa-iot:2.0
           imagePullPolicy: Never
 
           ports:
             - containerPort: 8000
+
+          resources:
+            requests:
+              cpu: "25m"
+              memory: "32Mi"
+            limits:
+              cpu: "500m"
+              memory: "128Mi"

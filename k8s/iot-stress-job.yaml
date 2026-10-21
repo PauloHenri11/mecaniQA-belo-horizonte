@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mecaniqa-iot-stress
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: carga
+          image: mecaniqa-iot:2.0
+          imagePullPolicy: Never
+          command:
+            - python
+            - -u
+            - /carga/gerador_carga.py
+          env:
+            - name: DURATION_SECONDS
+              value: "240"
+            - name: WORKERS
+              value: "16"
+          volumeMounts:
+            - name: script
+              mountPath: /carga
+          resources:
+            requests:
+              cpu: 50m
+              memory: 32Mi
+            limits:
+              cpu: 1000m
+              memory: 128Mi
+      volumes:
+        - name: script
+          configMap:
+            name: mecaniqa-carga-script
